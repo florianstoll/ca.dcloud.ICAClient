@@ -9,7 +9,7 @@ build-options:
     - --share=network
 
 finish-args:
-  #- --device=all  #For webcam/microphone access. Future work will be to remove this permission, and replace with a more restrictive one for those devices only
+  - --device=all  #For webcam/microphone access. Future work will be to remove this permission, and replace with a more restrictive one for those devices only
   - --share=network
   - --socket=pulseaudio
   - --socket=x11 
