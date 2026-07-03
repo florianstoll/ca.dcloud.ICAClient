@@ -15,7 +15,7 @@ if [[ -d $HOME/.ICAClient/.tmp ]]; then
 fi
 
 # check requirements
-# /app/ICAClient/linuxx64/util/workspacecheck.sh
+/app/ICAClient/linuxx64/util/workspacecheck.sh
 #ls -la /app/lib/
 #ldd /app/ICAClient/linuxx64/selfservice
 

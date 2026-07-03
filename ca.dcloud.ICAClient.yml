@@ -9,13 +9,14 @@ build-options:
     - --share=network
 
 finish-args:
-  #- --device=all  #For webcam/microphone access. Future work will be to remove this permission, and replace with a more restrictive one for those devices only
+  - --device=all  #For webcam/microphone access. Future work will be to remove this permission, and replace with a more restrictive one for those devices only
   - --share=network
   - --socket=pulseaudio
   - --socket=x11 
   - --share=ipc #Required for X11 to work properly
   - --env=ICAROOT=/app/ICAClient/linuxx64 
   - --socket=wayland
+  - --socket=pcsc #cardreader
   - --persist=. #Gives the app a persistent that is treated as the home directory, located at ~/.var/app/ca.dcloud.ICAClient
   - --persist=.ICAClient #Log/config directory (relative to the Flatpak container home folder)
 
@@ -68,7 +69,20 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
     sources:
        - type: archive
          url: http://archive.ubuntu.com/ubuntu/pool/universe/x/xerces-c/xerces-c_3.2.3+debian.orig.tar.xz
-         sha256: 25652e6ed8a55e9273d6514f7e2744678b6d51f5d88c03d4219fac0310393f8d  
+         sha256: 25652e6ed8a55e9273d6514f7e2744678b6d51f5d88c03d4219fac0310393f8d
+  - name: libusb
+    config-opts:
+      - "--disable-static"
+    cleanup:
+    - "/lib/*.la"
+    - "/lib/pkgconfig"
+    - "/include"
+    sources:
+      - type: archive
+        url: "https://github.com/libusb/libusb/releases/download/v1.0.27/libusb-1.0.27.tar.bz2"
+        "sha256": "ffaa41d741a8a3bee244ac8e54a72ea05bf2879663c098c82fc5757853441575"
+    post-install:
+    - "install -Dm644 COPYING ${FLATPAK_DEST}/share/licenses/libusb/COPYING"
 
   - name: gstreamer #Listed as a requirement for webkit2gtk
     no-autogen: true
@@ -141,7 +155,6 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
             url: http://ftp.ubuntu.com/ubuntu/ubuntu/pool/universe/t/typogrify/typogrify_2.0.7.orig.tar.gz
             sha256: 8be4668cda434163ce229d87ca273a11922cb1614cb359970b7dc96eed13cb38
 
-
   - name: gnome-keyring #Listed as a requirement for Service Continuity
     buildsystem: simple
     build-commands:
@@ -182,6 +195,25 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
       - type: archive
         url: https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/2.1.3.tar.gz
         sha256: dbda0c685942aa3ea908496592491e5ec8160d2cf1ec9d5fd5470e50768e7859
+
+  # cardreader
+  - name: pcsc-lite,
+    config-opts:
+      - --disable-libudev
+      - --disable-libsystemd
+      - --without-systemdsystemunitdir
+      - --disable-serial
+      - --disable-usb
+      - --disable-documentation
+      - --disable-polkit
+    #post-install:
+      #- |
+        #rm /app/sbin/pcscd
+        #rmdir /app/sbin || true
+    sources:
+        - type: archive
+          url: https://github.com/LudovicRousseau/PCSC/archive/refs/tags/2.0.3.tar.gz
+          sha256: f7f31436affdf3c0cbe0f45fb6f29cfadf10a0b5494c97145bdac7ddd5ff4999
 
   # - name: libwebkit2gtk #Listed as a requirement
   #   buildsystem: cmake-ninja
