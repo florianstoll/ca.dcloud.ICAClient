@@ -70,19 +70,19 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
        - type: archive
          url: http://archive.ubuntu.com/ubuntu/pool/universe/x/xerces-c/xerces-c_3.2.3+debian.orig.tar.xz
          sha256: 25652e6ed8a55e9273d6514f7e2744678b6d51f5d88c03d4219fac0310393f8d
-  - name: libusb
-    config-opts:
-      - "--disable-static"
-    cleanup:
-    - "/lib/*.la"
-    - "/lib/pkgconfig"
-    - "/include"
-    sources:
-      - type: archive
-        url: "https://github.com/libusb/libusb/releases/download/v1.0.27/libusb-1.0.27.tar.bz2"
-        "sha256": "ffaa41d741a8a3bee244ac8e54a72ea05bf2879663c098c82fc5757853441575"
-    post-install:
-    - "install -Dm644 COPYING ${FLATPAK_DEST}/share/licenses/libusb/COPYING"
+  # - name: libusb
+  #   config-opts:
+  #     - "--disable-static"
+  #   cleanup:
+  #   - "/lib/*.la"
+  #   - "/lib/pkgconfig"
+  #   - "/include"
+  #   sources:
+  #     - type: archive
+  #       url: "https://github.com/libusb/libusb/releases/download/v1.0.27/libusb-1.0.27.tar.bz2"
+  #       "sha256": "ffaa41d741a8a3bee244ac8e54a72ea05bf2879663c098c82fc5757853441575"
+  #   post-install:
+  #   - "install -Dm644 COPYING ${FLATPAK_DEST}/share/licenses/libusb/COPYING"
 
   - name: gstreamer #Listed as a requirement for webkit2gtk
     no-autogen: true
