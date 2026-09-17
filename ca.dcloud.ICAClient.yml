@@ -68,59 +68,60 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
          url: http://archive.ubuntu.com/ubuntu/pool/universe/x/xerces-c/xerces-c_3.2.3+debian.orig.tar.xz
          sha256: 25652e6ed8a55e9273d6514f7e2744678b6d51f5d88c03d4219fac0310393f8d
          
-  - name: gstreamer #Listed as a requirement for webkit2gtk
-    no-autogen: true
-    buildsystem: meson
-    sources:
-      - type: archive
-        url: http://archive.ubuntu.com/ubuntu/pool/main/g/gstreamer1.0/gstreamer1.0_1.24.2.orig.tar.xz #older version because of old meson
-        sha256: 9cafdd23bd180f1681c56cd3a6879a8497ccf24da6f422a6b6f356fa074a8481
-    cleanup:
-      - '*'
+  # included in org.gnome.Platform.xxx   
+  # - name: gstreamer #Listed as a requirement for webkit2gtk
+  #   no-autogen: true
+  #   buildsystem: meson
+  #   sources:
+  #     - type: archive
+  #       url: http://archive.ubuntu.com/ubuntu/pool/main/g/gstreamer1.0/gstreamer1.0_1.24.2.orig.tar.xz #older version because of old meson
+  #       sha256: 9cafdd23bd180f1681c56cd3a6879a8497ccf24da6f422a6b6f356fa074a8481
+  #   cleanup:
+  #     - '*'
 
-  - name: gstreamer-plugins-base #Listed as a requirement for webkit2gtk
-    no-autogen: true
-    buildsystem: meson
-    sources:
-      - type: archive
-        url: http://archive.ubuntu.com/ubuntu/pool/main/g/gst-plugins-base1.0/gst-plugins-base1.0_1.24.2.orig.tar.xz #older version because of old meson
-        sha256: 282f1cc8065c9b62eb6a0a20fb9e8328f8e5296df2458b7236daa729c41ae769
-    cleanup:
-      - '*'
+  # - name: gstreamer-plugins-base #Listed as a requirement for webkit2gtk
+  #   no-autogen: true
+  #   buildsystem: meson
+  #   sources:
+  #     - type: archive
+  #       url: http://archive.ubuntu.com/ubuntu/pool/main/g/gst-plugins-base1.0/gst-plugins-base1.0_1.24.2.orig.tar.xz #older version because of old meson
+  #       sha256: 282f1cc8065c9b62eb6a0a20fb9e8328f8e5296df2458b7236daa729c41ae769
+  #   cleanup:
+  #     - '*'
 
-  - name: gst-plugins-ugly  #Listed as requirement for HDX RT video compression and MediaStream Windows media redirection
-    buildsystem: meson
-    sources:
-       - type: archive
-         url: https://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-1.24.2.tar.xz
-         sha256: 45da98bf1040c9472fd59f6271282de25a3721ab85b78aaaf8104949550fbef5
+  # - name: gst-plugins-ugly  #Listed as requirement for HDX RT video compression and MediaStream Windows media redirection
+  #   buildsystem: meson
+  #   sources:
+  #      - type: archive
+  #        url: https://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-1.24.2.tar.xz
+  #        sha256: 45da98bf1040c9472fd59f6271282de25a3721ab85b78aaaf8104949550fbef5
 
-  - name: gst-plugins-bad  #Listed as requirement for HDX RT video compression and MediaStream Windows media redirection
-    buildsystem: meson
-    sources:
-       - type: archive
-         url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.24.2.tar.xz
-         sha256: 448e32787bc82b586c6cb2f81c9a8ef404fea4f77f25566fe06e597a3f59136b         
+  # - name: gst-plugins-bad  #Listed as requirement for HDX RT video compression and MediaStream Windows media redirection
+  #   buildsystem: meson
+  #   sources:
+  #      - type: archive
+  #        url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.24.2.tar.xz
+  #        sha256: 448e32787bc82b586c6cb2f81c9a8ef404fea4f77f25566fe06e597a3f59136b         
 
-  - name: gstreamer-plugins-base #Listed as a requirement for webkit2gtk
-    no-autogen: true
-    buildsystem: meson
-    sources:
-      - type: archive
-        url: http://archive.ubuntu.com/ubuntu/pool/main/g/gst-plugins-base1.0/gst-plugins-base1.0_1.24.2.orig.tar.xz #older version because of old meson
-        sha256: 282f1cc8065c9b62eb6a0a20fb9e8328f8e5296df2458b7236daa729c41ae769
-    cleanup:
-      - '*'
+  # - name: gstreamer-plugins-base #Listed as a requirement for webkit2gtk
+  #   no-autogen: true
+  #   buildsystem: meson
+  #   sources:
+  #     - type: archive
+  #       url: http://archive.ubuntu.com/ubuntu/pool/main/g/gst-plugins-base1.0/gst-plugins-base1.0_1.24.2.orig.tar.xz #older version because of old meson
+  #       sha256: 282f1cc8065c9b62eb6a0a20fb9e8328f8e5296df2458b7236daa729c41ae769
+  #   cleanup:
+  #     - '*'
 
-  - name: gstreamer-libav #Listed as a requirement for webkit2gtk
-    no-autogen: true
-    buildsystem: meson
-    sources:
-      - type: archive
-        url: http://archive.ubuntu.com/ubuntu/pool/universe/g/gst-libav1.0/gst-libav1.0_1.24.1.orig.tar.xz #older version because of old meson
-        sha256: 549b7821fb5a4c866d6197888496015106cc6ec96ffb12a64e6efa91aa6562fd
-    cleanup:
-      - '*'
+  # - name: gstreamer-libav #Listed as a requirement for webkit2gtk
+  #   no-autogen: true
+  #   buildsystem: meson
+  #   sources:
+  #     - type: archive
+  #       url: http://archive.ubuntu.com/ubuntu/pool/universe/g/gst-libav1.0/gst-libav1.0_1.24.1.orig.tar.xz #older version because of old meson
+  #       sha256: 549b7821fb5a4c866d6197888496015106cc6ec96ffb12a64e6efa91aa6562fd
+  #   cleanup:
+  #     - '*'
 
   - name: libsecret #Listed as a requirement for Service Continuity
     no-autogen: true
