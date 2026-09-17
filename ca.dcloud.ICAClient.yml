@@ -37,18 +37,18 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
        - type: archive
          url: http://archive.ubuntu.com/ubuntu/pool/main/g/gtk+3.0/gtk+3.0_3.24.50.orig.tar.xz
          sha256: 399118a5699314622165a11b769ea9b6ed68e037b6d46d57cfcf4851dec07529         
-  - name: libglvnd #libgl,libegl etc.
-    buildsystem: meson
-    sources:
-       - type: archive
-         url: https://archive.ubuntu.com/ubuntu/pool/main/libg/libglvnd/libglvnd_1.7.0.orig.tar.gz
-         sha256: 073e7292788d4d3eeb45ea6c7bdcce9bfdb3b3eef8d7dbd47f2f30dce046ef98         
-  - name: cairo #libgl,libegl etc.
-    buildsystem: meson
-    sources:
-       - type: archive
-         url: http://archive.ubuntu.com/ubuntu/pool/main/c/cairo/cairo_1.18.4.orig.tar.xz
-         sha256: 445ed8208a6e4823de1226a74ca319d3600e83f6369f99b14265006599c32ccb       
+  # - name: libglvnd #libgl,libegl etc.
+  #   buildsystem: meson
+  #   sources:
+  #      - type: archive
+  #        url: https://archive.ubuntu.com/ubuntu/pool/main/libg/libglvnd/libglvnd_1.7.0.orig.tar.gz
+  #        sha256: 073e7292788d4d3eeb45ea6c7bdcce9bfdb3b3eef8d7dbd47f2f30dce046ef98         
+  # # - name: cairo #libgl,libegl etc.
+  #   buildsystem: meson
+  #   sources:
+  #      - type: archive
+  #        url: http://archive.ubuntu.com/ubuntu/pool/main/c/cairo/cairo_1.18.4.orig.tar.xz
+  #        sha256: 445ed8208a6e4823de1226a74ca319d3600e83f6369f99b14265006599c32ccb       
 
   - name: libjson-c #Listed as a requirement "for instrumentation", not sure what that refers to
     buildsystem: cmake-ninja
@@ -123,13 +123,13 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
   #   cleanup:
   #     - '*'
 
-  - name: libsecret #Listed as a requirement for Service Continuity
-    no-autogen: true
-    buildsystem: meson
-    sources:
-       - type: archive
-         url: http://archive.ubuntu.com/ubuntu/pool/main/libs/libsecret/libsecret_0.21.7.orig.tar.xz
-         sha256: 6b452e4750590a2b5617adc40026f28d2f4903de15f1250e1d1c40bfd68ed55e
+  # - name: libsecret #Listed as a requirement for Service Continuity
+  #   no-autogen: true
+  #   buildsystem: meson
+  #   sources:
+  #      - type: archive
+  #        url: http://archive.ubuntu.com/ubuntu/pool/main/libs/libsecret/libsecret_0.21.7.orig.tar.xz
+  #        sha256: 6b452e4750590a2b5617adc40026f28d2f4903de15f1250e1d1c40bfd68ed55e
     # modules:
     #   - name: typogrify
     #     buildsystem: simple
@@ -152,22 +152,22 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
          url: http://archive.ubuntu.com/ubuntu/pool/main/g/gnome-keyring/gnome-keyring_40.0.orig.tar.xz
          sha256: a3d24db08ee2fdf240fbbf0971a98c8ee295aa0e1a774537f4ea938038a3b931
 
-  - name: libva #Listed as a requirement for Service Continuity
-    no-autogen: true
-    buildsystem: meson
-    sources:
-      - type: archive
-        url: http://archive.ubuntu.com/ubuntu/pool/main/libv/libva/libva_2.22.0.orig.tar.xz
-        sha256: efd30e3581bc09383a02a2943a83c216c94fc8027ed299be49d29e6f71d96ce8
-    cleanup:
-      - '*'
-    # newer requirements
-  - name: libsoup #Listed as a requirement for webkit2gtk
-    buildsystem: meson
-    sources:
-      - type: archive
-        url: http://archive.ubuntu.com/ubuntu/pool/main/libs/libsoup2.4/libsoup2.4_2.74.3.orig.tar.xz
-        sha256: e4b77c41cfc4c8c5a035fcdc320c7bc6cfb75ef7c5a034153df1413fa1d92f13
+  # - name: libva #Listed as a requirement for Service Continuity
+  #   no-autogen: true
+  #   buildsystem: meson
+  #   sources:
+  #     - type: archive
+  #       url: http://archive.ubuntu.com/ubuntu/pool/main/libv/libva/libva_2.22.0.orig.tar.xz
+  #       sha256: efd30e3581bc09383a02a2943a83c216c94fc8027ed299be49d29e6f71d96ce8
+  #   cleanup:
+  #     - '*'
+  #   # newer requirements
+  # - name: libsoup #Listed as a requirement for webkit2gtk
+  #   buildsystem: meson
+  #   sources:
+  #     - type: archive
+  #       url: http://archive.ubuntu.com/ubuntu/pool/main/libs/libsoup2.4/libsoup2.4_2.74.3.orig.tar.xz
+  #       sha256: e4b77c41cfc4c8c5a035fcdc320c7bc6cfb75ef7c5a034153df1413fa1d92f13
 
   - name: libjpeg # with libjpeg.so.8
     buildsystem: cmake-ninja
