@@ -179,6 +179,7 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
       - -DENABLE_STATIC:BOOL=NO
       - -DWITH_JPEG8:BOOL=YES
       - -DCMAKE_INSTALL_LIBDIR=/app/lib # uses lib64 by default
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     sources:
       - type: archive
         url: https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/2.1.3.tar.gz
