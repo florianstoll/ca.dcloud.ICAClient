@@ -9,15 +9,18 @@ Shortly after creating this project, I stopped requiring the use of Citrix Works
 This project and I are not affiliated with Citrix. This repository does not contain any Citrix software. When the user builds the Flatpak application using this template, the required packages are obtained from Citrix's website, where Citrix has made the installers available for download.
 
 ## Requirements
-flatpak, flatpak-builder, elfutils, pulseaudio  
+flatpak, flatpak-builder, elfutils, (pulseaudio TODO: removes pipewire, not necessary)
 You should be able to install all of these through your distro's package manager.
 
 ## Instructions
 Perform the [flatpak setup](https://flatpak.org/setup/).  
 Add the flathub remote, and install the Gnome SDK and runtime:  
 *flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo  
-flatpak install --user flathub org.gnome.Platform//46  
-flatpak install --user flathub org.gnome.Sdk//46*
+flatpak install --user flathub org.gnome.Platform//50  
+flatpak install --user flathub org.gnome.Sdk//50*
+
+### add flathub shared modules
+git submodule add https://github.com/flathub/shared-modules.git
 
 Clone/download this repo. Open a terminal in the folder where you downloaded this repo, and run the following:  
 *flatpak-builder --user --install --force-clean icaclient ca.dcloud.ICAClient.yml*  
