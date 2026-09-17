@@ -2,9 +2,6 @@ app-id: ca.dcloud.ICAClient
 runtime: org.gnome.Platform
 runtime-version: '50'
 sdk: org.gnome.Sdk
-sdk-extensions:
-  org.gnome.Sdk.Extension.libgcrypt
-# --install-deps-from=flathub
 command: /app/bin/run.sh
 
 build-options:
