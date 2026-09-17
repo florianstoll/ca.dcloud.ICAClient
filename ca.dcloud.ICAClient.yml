@@ -2,6 +2,8 @@ app-id: ca.dcloud.ICAClient
 runtime: org.gnome.Platform
 runtime-version: '50'
 sdk: org.gnome.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.libgcrypt
 command: /app/bin/run.sh
 
 build-options:
