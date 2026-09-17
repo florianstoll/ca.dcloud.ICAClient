@@ -382,6 +382,7 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
       - |
         mkdir -p /app/share/metainfo
         cp ./ca.dcloud.ICAClient.appdata.xml /app/share/metainfo/
+        ls /app/share/metainfo/
         appstream-util validate-relax /app/share/metainfo/ca.dcloud.ICAClient.appdata.xml
     sources:
       - type: file
