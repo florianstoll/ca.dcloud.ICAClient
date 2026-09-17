@@ -26,7 +26,10 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
   # updates via: git submodule update --remote --merge
   # rtx audio optimizations
   - shared-modules/dbus-glib/dbus-glib.json
+  # citrix windows
   - shared-modules/gtk2/gtk2.json
+  # hardware devices
+  - shared-modules/libusb/libusb.json
      
   - name: gtk3
     buildsystem: meson
@@ -52,17 +55,11 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
     config-opts:
       - -DCMAKE_SKIP_RPATH:BOOL=YES
       - -DCMAKE_INSTALL_LIBDIR=/app/lib # uses lib64 by default
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     sources:
        - type: archive
          url: http://archive.ubuntu.com/ubuntu/pool/main/j/json-c/json-c_0.15.orig.tar.gz
          sha256: 4ba9a090a42cf1e12b84c64e4464bb6fb893666841d5843cc5bef90774028882
-#  - name: glibc #Listed as a requirement "for instrumentation", not sure what that refers to
-#    buildsystem: autotools
-#    builddir: true
-#    sources:
-#       - type: archive
-#         url: http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/glibc_2.42.orig.tar.xz
-#         sha256: d1775e32e4628e64ef930f435b67bb63af7599acb6be2b335b9f19f16509f17f
 
   - name: libxerces-c #Listed as a requirement for the self-service UI
     buildsystem: autotools
@@ -71,20 +68,6 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
          url: http://archive.ubuntu.com/ubuntu/pool/universe/x/xerces-c/xerces-c_3.2.3+debian.orig.tar.xz
          sha256: 25652e6ed8a55e9273d6514f7e2744678b6d51f5d88c03d4219fac0310393f8d
          
-  - name: libusb
-    config-opts:
-      - "--disable-static"
-    cleanup:
-    - "/lib/*.la"
-    - "/lib/pkgconfig"
-    - "/include"
-    sources:
-      - type: archive
-        url: "https://github.com/libusb/libusb/releases/download/v1.0.27/libusb-1.0.27.tar.bz2"
-        "sha256": "ffaa41d741a8a3bee244ac8e54a72ea05bf2879663c098c82fc5757853441575"
-    post-install:
-    - "install -Dm644 COPYING ${FLATPAK_DEST}/share/licenses/libusb/COPYING"
-
   - name: gstreamer #Listed as a requirement for webkit2gtk
     no-autogen: true
     buildsystem: meson
