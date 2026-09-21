@@ -326,12 +326,12 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
   #        sha256: cfa008a5af822b36ae6287f18182c40c91dd699c55faa38605881ed175ca464f
   #
   
-  # - name: libcanberra-gtk3-module #libgl,libegl etc.
-  #   buildsystem: autotools
-  #   sources:
-  #      - type: archive
-  #        url: http://archive.ubuntu.com/ubuntu/pool/main/libc/libcanberra/libcanberra_0.30.orig.tar.xz
-  #        sha256: c2b671e67e0c288a69fc33dc1b6f1b534d07882c2aceed37004bf48c601afa72 
+  - name: libcanberra-gtk3-module #libgl,libegl etc.
+    buildsystem: autotools
+    sources:
+       - type: archive
+         url: http://archive.ubuntu.com/ubuntu/pool/main/libc/libcanberra/libcanberra_0.30.orig.tar.xz
+         sha256: c2b671e67e0c288a69fc33dc1b6f1b534d07882c2aceed37004bf48c601afa72 
 
     
 
