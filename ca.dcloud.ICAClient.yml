@@ -141,17 +141,17 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
     #         url: http://ftp.ubuntu.com/ubuntu/ubuntu/pool/universe/t/typogrify/typogrify_2.0.7.orig.tar.gz
     #         sha256: 8be4668cda434163ce229d87ca273a11922cb1614cb359970b7dc96eed13cb38
 
-  # - name: gnome-keyring #Listed as a requirement for Service Continuity
-  #   buildsystem: simple
-  #   build-commands:
-  #      - |
-  #        ./configure --prefix=/app --with-pkcs11-config=/app/share/p11-kit/modules --with-pkcs11-modules=/app/share/p11-kit/modules
-  #        make
-  #        make install
-  #   sources:
-  #      - type: archive
-  #        url: http://archive.ubuntu.com/ubuntu/pool/main/g/gnome-keyring/gnome-keyring_40.0.orig.tar.xz
-  #        sha256: a3d24db08ee2fdf240fbbf0971a98c8ee295aa0e1a774537f4ea938038a3b931
+  - name: gnome-keyring #Listed as a requirement for Service Continuity
+    buildsystem: simple
+    build-commands:
+       - |
+         ./configure --prefix=/app --with-pkcs11-config=/app/share/p11-kit/modules --with-pkcs11-modules=/app/share/p11-kit/modules
+         make
+         make install
+    sources:
+       - type: archive
+         url: http://archive.ubuntu.com/ubuntu/pool/main/g/gnome-keyring/gnome-keyring_40.0.orig.tar.xz
+         sha256: a3d24db08ee2fdf240fbbf0971a98c8ee295aa0e1a774537f4ea938038a3b931
 
   # - name: libva #Listed as a requirement for Service Continuity
   #   no-autogen: true
