@@ -29,6 +29,7 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
   # citrix windows
   - shared-modules/gtk2/gtk2.json
   - shared-modules/libcanberra/libcanberra.json
+  - shared-modules/libsoup/libsoup-2.4.json
   # hardware devices
   - shared-modules/libusb/libusb.json
      
@@ -141,17 +142,17 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
     #         url: http://ftp.ubuntu.com/ubuntu/ubuntu/pool/universe/t/typogrify/typogrify_2.0.7.orig.tar.gz
     #         sha256: 8be4668cda434163ce229d87ca273a11922cb1614cb359970b7dc96eed13cb38
 
-  - name: gnome-keyring #Listed as a requirement for Service Continuity
-    buildsystem: simple
-    build-commands:
-       - |
-         ./configure --prefix=/app --with-pkcs11-config=/app/share/p11-kit/modules --with-pkcs11-modules=/app/share/p11-kit/modules
-         make
-         make install
-    sources:
-       - type: archive
-         url: http://archive.ubuntu.com/ubuntu/pool/main/g/gnome-keyring/gnome-keyring_40.0.orig.tar.xz
-         sha256: a3d24db08ee2fdf240fbbf0971a98c8ee295aa0e1a774537f4ea938038a3b931
+  # - name: gnome-keyring #Listed as a requirement for Service Continuity
+  #   buildsystem: simple
+  #   build-commands:
+  #      - |
+  #        ./configure --prefix=/app --with-pkcs11-config=/app/share/p11-kit/modules --with-pkcs11-modules=/app/share/p11-kit/modules
+  #        make
+  #        make install
+  #   sources:
+  #      - type: archive
+  #        url: http://archive.ubuntu.com/ubuntu/pool/main/g/gnome-keyring/gnome-keyring_40.0.orig.tar.xz
+  #        sha256: a3d24db08ee2fdf240fbbf0971a98c8ee295aa0e1a774537f4ea938038a3b931
 
   # - name: libva #Listed as a requirement for Service Continuity
   #   no-autogen: true
@@ -326,12 +327,15 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
   #        sha256: cfa008a5af822b36ae6287f18182c40c91dd699c55faa38605881ed175ca464f
   #
   
-  - name: libcanberra-gtk3-module #libgl,libegl etc.
-    buildsystem: autotools
-    sources:
-       - type: archive
-         url: http://archive.ubuntu.com/ubuntu/pool/main/libc/libcanberra/libcanberra_0.30.orig.tar.xz
-         sha256: c2b671e67e0c288a69fc33dc1b6f1b534d07882c2aceed37004bf48c601afa72 
+  # - name: libcanberra-gtk3-module #libgl,libegl etc.
+  #   buildsystem: autotools
+  #   no-autogen: true
+  #   make-install-args:
+  #     - PREFIX=/app
+  #   sources:
+  #      - type: archive
+  #        url: http://archive.ubuntu.com/ubuntu/pool/main/libc/libcanberra/libcanberra_0.30.orig.tar.xz
+  #        sha256: c2b671e67e0c288a69fc33dc1b6f1b534d07882c2aceed37004bf48c601afa72 
 
     
 
