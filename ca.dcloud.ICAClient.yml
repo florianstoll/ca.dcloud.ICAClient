@@ -133,15 +133,15 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
        - type: archive
          url: http://archive.ubuntu.com/ubuntu/pool/main/libs/libsecret/libsecret_0.21.7.orig.tar.xz
          sha256: 6b452e4750590a2b5617adc40026f28d2f4903de15f1250e1d1c40bfd68ed55e
-    modules:
-      - name: typogrify
-        buildsystem: simple
-        build-commands:
-          - pip3 install --no-build-isolation --prefix=/app .
-        sources:
-          - type: archive
-            url: http://ftp.ubuntu.com/ubuntu/ubuntu/pool/universe/t/typogrify/typogrify_2.0.7.orig.tar.gz
-            sha256: 8be4668cda434163ce229d87ca273a11922cb1614cb359970b7dc96eed13cb38
+    # modules:
+    #   - name: typogrify
+    #     buildsystem: simple
+    #     build-commands:
+    #       - pip3 install --no-build-isolation --prefix=/app .
+    #     sources:
+    #       - type: archive
+    #         url: http://ftp.ubuntu.com/ubuntu/ubuntu/pool/universe/t/typogrify/typogrify_2.0.7.orig.tar.gz
+    #         sha256: 8be4668cda434163ce229d87ca273a11922cb1614cb359970b7dc96eed13cb38
 
   - name: gnome-keyring #Listed as a requirement for Service Continuity
     buildsystem: simple
