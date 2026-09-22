@@ -130,8 +130,7 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
     no-autogen: true
     buildsystem: meson
     config-opts:
-      - -Dbashcompdir=/app
-      - -Dcompletionsdir=/app
+      - -Dbashcompdir=''
     sources:
        - type: archive
          url: http://archive.ubuntu.com/ubuntu/pool/main/libs/libsecret/libsecret_0.21.7.orig.tar.xz
