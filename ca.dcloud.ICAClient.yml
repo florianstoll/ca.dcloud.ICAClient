@@ -126,22 +126,22 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
   #   cleanup:
   #     - '*'
 
-  # - name: libsecret #Listed as a requirement for Service Continuity
-  #   no-autogen: true
-  #   buildsystem: meson
-  #   sources:
-  #      - type: archive
-  #        url: http://archive.ubuntu.com/ubuntu/pool/main/libs/libsecret/libsecret_0.21.7.orig.tar.xz
-  #        sha256: 6b452e4750590a2b5617adc40026f28d2f4903de15f1250e1d1c40bfd68ed55e
-    # modules:
-    #   - name: typogrify
-    #     buildsystem: simple
-    #     build-commands:
-    #       - pip3 install --no-build-isolation --prefix=/app .
-    #     sources:
-    #       - type: archive
-    #         url: http://ftp.ubuntu.com/ubuntu/ubuntu/pool/universe/t/typogrify/typogrify_2.0.7.orig.tar.gz
-    #         sha256: 8be4668cda434163ce229d87ca273a11922cb1614cb359970b7dc96eed13cb38
+  - name: libsecret #Listed as a requirement for Service Continuity
+    no-autogen: true
+    buildsystem: meson
+    sources:
+       - type: archive
+         url: http://archive.ubuntu.com/ubuntu/pool/main/libs/libsecret/libsecret_0.21.7.orig.tar.xz
+         sha256: 6b452e4750590a2b5617adc40026f28d2f4903de15f1250e1d1c40bfd68ed55e
+    modules:
+      - name: typogrify
+        buildsystem: simple
+        build-commands:
+          - pip3 install --no-build-isolation --prefix=/app .
+        sources:
+          - type: archive
+            url: http://ftp.ubuntu.com/ubuntu/ubuntu/pool/universe/t/typogrify/typogrify_2.0.7.orig.tar.gz
+            sha256: 8be4668cda434163ce229d87ca273a11922cb1614cb359970b7dc96eed13cb38
 
   - name: gnome-keyring #Listed as a requirement for Service Continuity
     buildsystem: simple
@@ -154,21 +154,21 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
        - type: archive
          url: http://archive.ubuntu.com/ubuntu/pool/main/g/gnome-keyring/gnome-keyring_40.0.orig.tar.xz
          sha256: a3d24db08ee2fdf240fbbf0971a98c8ee295aa0e1a774537f4ea938038a3b931
-    modules:
-      - name: libgpg-error
-        buildsystem: autotools
-        sources:
-          - type: archive
-            url: https://gnupg.org
-            sha256: 68ae11153d7ffab2da630c60baab431419e66bafd46e67ebb6c4974f8e7b9e09
-      - name: libgcrypt
-        buildsystem: autotools
-        config-opts:
-          - --disable-doc
-        sources:
-          - type: archive
-            url: https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.12.2.tar.bz2
-            sha256: 7ce33c2492221a0436f96a8500215e9f3e3dcb5fd26a757cd415e7a843babd5e
+    # modules:
+    #   - name: libgpg-error
+    #     buildsystem: autotools
+    #     sources:
+    #       - type: archive
+    #         url: https://gnupg.org
+    #         sha256: 68ae11153d7ffab2da630c60baab431419e66bafd46e67ebb6c4974f8e7b9e09
+    #   - name: libgcrypt
+    #     buildsystem: autotools
+    #     config-opts:
+    #       - --disable-doc
+    #     sources:
+    #       - type: archive
+    #         url: https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.12.2.tar.bz2
+    #         sha256: 7ce33c2492221a0436f96a8500215e9f3e3dcb5fd26a757cd415e7a843babd5e
 
   - name: libva #Listed as a requirement for Service Continuity
     no-autogen: true
