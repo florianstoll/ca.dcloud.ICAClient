@@ -24,6 +24,7 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
 
   # shared modules from flathub repo
   # updates via: git submodule update --remote --merge
+
   # rtx audio optimizations
   - shared-modules/dbus-glib/dbus-glib.json
   # citrix windows
@@ -39,18 +40,18 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
        - type: archive
          url: http://archive.ubuntu.com/ubuntu/pool/main/g/gtk+3.0/gtk+3.0_3.24.50.orig.tar.xz
          sha256: 399118a5699314622165a11b769ea9b6ed68e037b6d46d57cfcf4851dec07529         
-  # - name: libglvnd #libgl,libegl etc.
-  #   buildsystem: meson
-  #   sources:
-  #      - type: archive
-  #        url: https://archive.ubuntu.com/ubuntu/pool/main/libg/libglvnd/libglvnd_1.7.0.orig.tar.gz
-  #        sha256: 073e7292788d4d3eeb45ea6c7bdcce9bfdb3b3eef8d7dbd47f2f30dce046ef98         
-  # # - name: cairo #libgl,libegl etc.
-  #   buildsystem: meson
-  #   sources:
-  #      - type: archive
-  #        url: http://archive.ubuntu.com/ubuntu/pool/main/c/cairo/cairo_1.18.4.orig.tar.xz
-  #        sha256: 445ed8208a6e4823de1226a74ca319d3600e83f6369f99b14265006599c32ccb       
+  - name: libglvnd #libgl,libegl etc.
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://archive.ubuntu.com/ubuntu/pool/main/libg/libglvnd/libglvnd_1.7.0.orig.tar.gz
+        sha256: 073e7292788d4d3eeb45ea6c7bdcce9bfdb3b3eef8d7dbd47f2f30dce046ef98         
+  # - name: cairo #libgl,libegl etc.
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: http://archive.ubuntu.com/ubuntu/pool/main/c/cairo/cairo_1.18.4.orig.tar.xz
+        sha256: 445ed8208a6e4823de1226a74ca319d3600e83f6369f99b14265006599c32ccb       
 
   - name: libjson-c #Listed as a requirement "for instrumentation", not sure what that refers to
     buildsystem: cmake-ninja
@@ -169,15 +170,15 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
             url: https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.12.2.tar.bz2
             sha256: 7ce33c2492221a0436f96a8500215e9f3e3dcb5fd26a757cd415e7a843babd5e
 
-  # - name: libva #Listed as a requirement for Service Continuity
-  #   no-autogen: true
-  #   buildsystem: meson
-  #   sources:
-  #     - type: archive
-  #       url: http://archive.ubuntu.com/ubuntu/pool/main/libv/libva/libva_2.22.0.orig.tar.xz
-  #       sha256: efd30e3581bc09383a02a2943a83c216c94fc8027ed299be49d29e6f71d96ce8
-  #   cleanup:
-  #     - '*'
+  - name: libva #Listed as a requirement for Service Continuity
+    no-autogen: true
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: http://archive.ubuntu.com/ubuntu/pool/main/libv/libva/libva_2.22.0.orig.tar.xz
+        sha256: efd30e3581bc09383a02a2943a83c216c94fc8027ed299be49d29e6f71d96ce8
+    cleanup:
+      - '*'
   #   # newer requirements
   # - name: libsoup #Listed as a requirement for webkit2gtk
   #   buildsystem: meson
