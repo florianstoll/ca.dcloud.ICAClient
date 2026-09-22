@@ -154,6 +154,12 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
          url: http://archive.ubuntu.com/ubuntu/pool/main/g/gnome-keyring/gnome-keyring_40.0.orig.tar.xz
          sha256: a3d24db08ee2fdf240fbbf0971a98c8ee295aa0e1a774537f4ea938038a3b931
     modules:
+      - name: libgpg-error
+        buildsystem: autotools
+        sources:
+          - type: archive
+            url: https://gnupg.org
+            sha256: 68ae11153d7ffab2da630c60baab431419e66bafd46e67ebb6c4974f8e7b9e09
       - name: libgcrypt
         buildsystem: autotools
         config-opts:
