@@ -18,6 +18,7 @@ Add the flathub remote, and install the Gnome SDK and runtime:
 *flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo  
 flatpak install --user flathub org.gnome.Platform//50  
 flatpak install --user flathub org.gnome.Sdk//50*
+flatpak install --user flathub org.freedesktop.Sdk.Extension.llvm20//25.08
 
 ### add flathub shared modules
 git submodule add https://github.com/flathub/shared-modules.git
