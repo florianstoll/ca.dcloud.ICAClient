@@ -1,15 +1,23 @@
 # ca.dcloud.ICAClient
 Build and install the Citrix Workspace app (ICAClient) + HDX RealTime Media Engine for Skype as a Flatpak application for Linux.
 
-# 🚨 Project not receiving maintenance
+# Features tested
+* Connection to citrix server via ICA file
+* Teams calls with audio and webcam (optimization enabled) and sharing screens
+* Cardreader
 
-Shortly after creating this project, I stopped requiring the use of Citrix Workspace for my job. I stopped maintaining this shortly after (~Jan 2022). I  may eventually archive this repo. But if anyone is interested please feel free to fork and continue work on it.
+# 🚨 Project maintenance
+There are the follwing areas which needs maintenance on an ongoing basis:
+* Flatpak packages for building/running (Plattform+SDK etc.) installed via CLI and defined in the yml file
+* Modules for building/running defined in the yml file
+* Shared modules of flathub defined in the yml file
+* Potentially breaking changes in the Citrix Workspace app (ICAClient) or HDX RealTime Media Engine for Skype and download part 
 
 ## Disclaimer
 This project and I are not affiliated with Citrix. This repository does not contain any Citrix software. When the user builds the Flatpak application using this template, the required packages are obtained from Citrix's website, where Citrix has made the installers available for download.
 
 ## Requirements
-flatpak, flatpak-builder, elfutils, (pulseaudio TODO: removes pipewire, not necessary)
+flatpak, flatpak-builder, elfutils and the Gnome SDK and runtime.
 You should be able to install all of these through your distro's package manager.
 
 ## Instructions
@@ -35,5 +43,11 @@ Or launch it via command line:
 ## Updating
 When you build the app, it will automatically grab the most recent versions of Workspace and HDX RTME. Therefore, if Citrix has published new verions you can update your flatpak app by simply re-running the *flatpak-builder* command listed above. However, you may need to empty the .flatpack-builder folder (located in the folder where you previously built the app), as Flatpak may see the build manifest hasn't changed and therefore use the cached files from the previous build, rather than re-downloading and grabbing the latest installers.
 
+# Known limitations
+* No Citrix app protection
+* Sometimes the window is closed after 10 seconds and you need to reconnect. Seems to be a problem with webcam and gstreamer. If it does not close during the first seconds it is running fine.
+* You can not use the workspacecheck.sh reliably to check the requirements of Citrix because it uses many unreachable commands (systemd, logind etc.)
+* Other untested features of the Citrix App
+
 ## Notes
-I have not tested this extensively by any means, not all features of Citrix Workspace may work, or work stably. So far I've basically only used it to connect to my workstation via Remote PC, and verified that Skype works when doing so.
+If you find any bugs, please report them to the issue tracker.

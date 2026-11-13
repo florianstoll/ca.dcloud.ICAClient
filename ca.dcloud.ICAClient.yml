@@ -13,7 +13,7 @@ build-options:
     - --share=network
 
 finish-args:
-  - --device=all  #For webcam/microphone access. Future work will be to remove this permission, and replace with a more restrictive one for those devices only
+  - --device=all  #For webcam/microphone access. Will be replaced by xdg portals
   - --share=network
   - --socket=pulseaudio
   - --socket=x11 
@@ -23,7 +23,7 @@ finish-args:
   - --socket=pcsc #cardreader
   - --persist=. #Gives the app a persistent that is treated as the home directory, located at ~/.var/app/ca.dcloud.ICAClient
   - --persist=.ICAClient #Log/config directory (relative to the Flatpak container home folder)
-  - --talk-name=org.freedesktop.secrets
+  - --talk-name=org.freedesktop.secrets #gnome keyring must be tested
 
 modules: #Requirements as per Citrix's site, that aren't included in the Flatpak runtime. https://docs.citrix.com/en-us/citrix-workspace-app-for-linux/system-requirements.html
 
@@ -74,61 +74,6 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
          url: http://archive.ubuntu.com/ubuntu/pool/universe/x/xerces-c/xerces-c_3.2.3+debian.orig.tar.xz
          sha256: 25652e6ed8a55e9273d6514f7e2744678b6d51f5d88c03d4219fac0310393f8d
          
-         
-  # included in org.gnome.Platform.xxx   
-  # - name: gstreamer #Listed as a requirement for webkit2gtk
-  #   no-autogen: true
-  #   buildsystem: meson
-  #   sources:
-  #     - type: archive
-  #       url: http://archive.ubuntu.com/ubuntu/pool/main/g/gstreamer1.0/gstreamer1.0_1.24.2.orig.tar.xz #older version because of old meson
-  #       sha256: 9cafdd23bd180f1681c56cd3a6879a8497ccf24da6f422a6b6f356fa074a8481
-  #   cleanup:
-  #     - '*'
-
-  # - name: gstreamer-plugins-base #Listed as a requirement for webkit2gtk
-  #   no-autogen: true
-  #   buildsystem: meson
-  #   sources:
-  #     - type: archive
-  #       url: http://archive.ubuntu.com/ubuntu/pool/main/g/gst-plugins-base1.0/gst-plugins-base1.0_1.24.2.orig.tar.xz #older version because of old meson
-  #       sha256: 282f1cc8065c9b62eb6a0a20fb9e8328f8e5296df2458b7236daa729c41ae769
-  #   cleanup:
-  #     - '*'
-
-  # - name: gst-plugins-ugly  #Listed as requirement for HDX RT video compression and MediaStream Windows media redirection
-  #   buildsystem: meson
-  #   sources:
-  #      - type: archive
-  #        url: https://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-1.24.2.tar.xz
-  #        sha256: 45da98bf1040c9472fd59f6271282de25a3721ab85b78aaaf8104949550fbef5
-
-  # - name: gst-plugins-bad  #Listed as requirement for HDX RT video compression and MediaStream Windows media redirection
-  #   buildsystem: meson
-  #   sources:
-  #      - type: archive
-  #        url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.24.2.tar.xz
-  #        sha256: 448e32787bc82b586c6cb2f81c9a8ef404fea4f77f25566fe06e597a3f59136b         
-
-  # - name: gstreamer-plugins-base #Listed as a requirement for webkit2gtk
-  #   no-autogen: true
-  #   buildsystem: meson
-  #   sources:
-  #     - type: archive
-  #       url: http://archive.ubuntu.com/ubuntu/pool/main/g/gst-plugins-base1.0/gst-plugins-base1.0_1.24.2.orig.tar.xz #older version because of old meson
-  #       sha256: 282f1cc8065c9b62eb6a0a20fb9e8328f8e5296df2458b7236daa729c41ae769
-  #   cleanup:
-  #     - '*'
-
-  # - name: gstreamer-libav #Listed as a requirement for webkit2gtk
-  #   no-autogen: true
-  #   buildsystem: meson
-  #   sources:
-  #     - type: archive
-  #       url: http://archive.ubuntu.com/ubuntu/pool/universe/g/gst-libav1.0/gst-libav1.0_1.24.1.orig.tar.xz #older version because of old meson
-  #       sha256: 549b7821fb5a4c866d6197888496015106cc6ec96ffb12a64e6efa91aa6562fd
-  #   cleanup:
-  #     - '*'
 
   - name: libsecret #Listed as a requirement for Service Continuity
     no-autogen: true
@@ -137,53 +82,29 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
       - -Dbashcompdir=''
     sources:
        - type: archive
-         url: http://archive.ubuntu.com/ubuntu/pool/main/libs/libsecret/libsecret_0.21.7.orig.tar.xz
-         sha256: 6b452e4750590a2b5617adc40026f28d2f4903de15f1250e1d1c40bfd68ed55e
-    # modules:
-    #   - name: typogrify
-    #     buildsystem: simple
-    #     build-commands:
-    #       - pip3 install --no-build-isolation --prefix=/app .
-    #     sources:
-    #       - type: archive
-    #         url: http://ftp.ubuntu.com/ubuntu/ubuntu/pool/universe/t/typogrify/typogrify_2.0.7.orig.tar.gz
-    #         sha256: 8be4668cda434163ce229d87ca273a11922cb1614cb359970b7dc96eed13cb38
+         url: https://archive.ubuntu.com/ubuntu/pool/main/libs/libsecret/libsecret_0.21.8.2.orig.tar.xz
+         sha256: 142948339c5b971d8f6a8c7099521f6fd319b6fe73d2694b4e6d3310ed28b6e6
 
-  # - name: libgcrypt
-  #   buildsystem: autotools
-  #   config-opts:
-  #     - --disable-doc
-  #   sources:
-  #     - type: archive
-  #       url: https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.12.2.tar.bz2
-  #       sha256: 7ce33c2492221a0436f96a8500215e9f3e3dcb5fd26a757cd415e7a843babd5e
-
-  # - name: gnome-keyring #Listed as a requirement for Service Continuity
-  #   buildsystem: simple
-  #   build-commands:
-  #      - |
-  #        ./configure --prefix=/app --with-pkcs11-config=/app/share/p11-kit/modules --with-pkcs11-modules=/app/share/p11-kit/modules
-  #        make
-  #        make install
-  #   sources:
-  #      - type: archive
-  #        url: http://archive.ubuntu.com/ubuntu/pool/main/g/gnome-keyring/gnome-keyring_40.0.orig.tar.xz
-  #        sha256: a3d24db08ee2fdf240fbbf0971a98c8ee295aa0e1a774537f4ea938038a3b931
-  #   modules:
-  #   #   - name: libgpg-error
-  #   #     buildsystem: autotools
-  #   #     sources:
-  #   #       - type: archive
-  #   #         url: https://gnupg.org
-  #   #         sha256: 68ae11153d7ffab2da630c60baab431419e66bafd46e67ebb6c4974f8e7b9e09
-  #       - name: libgcrypt
-  #         buildsystem: autotools
-  #         config-opts:
-  #           - --disable-doc
-  #         sources:
-  #           - type: archive
-  #             url: https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.12.2.tar.bz2
-  #             sha256: 7ce33c2492221a0436f96a8500215e9f3e3dcb5fd26a757cd415e7a843babd5e
+  - name: gnome-keyring #Listed as a requirement for Service Continuity
+    buildsystem: simple
+    build-commands:
+      - |
+        meson setup _build -Dsystemd=disabled -Dpam=false -Dprefix=/app
+    sources:
+       - type: archive
+         url: https://archive.ubuntu.com/ubuntu/pool/main/g/gnome-keyring/gnome-keyring_51.1.orig.tar.xz
+         sha256: dfe7adc5876ef0670e7eba2907799bdbb8875ce58bb4208e1a52169bd16a47ca
+    cleanup:
+      - '*'
+    modules:
+        - name: libgcrypt
+          buildsystem: autotools
+          config-opts:
+            - --disable-doc
+          sources:
+            - type: archive
+              url: https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.12.4.tar.bz2
+              sha256: d77f68f48879510e79a2f65977ccc68981781ea0923e5bdffac2a193ea3d660e
 
   - name: libva #Listed as a requirement for Service Continuity
     no-autogen: true
@@ -194,13 +115,6 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
         sha256: efd30e3581bc09383a02a2943a83c216c94fc8027ed299be49d29e6f71d96ce8
     cleanup:
       - '*'
-  #   # newer requirements
-  # - name: libsoup #Listed as a requirement for webkit2gtk
-  #   buildsystem: meson
-  #   sources:
-  #     - type: archive
-  #       url: http://archive.ubuntu.com/ubuntu/pool/main/libs/libsoup2.4/libsoup2.4_2.74.3.orig.tar.xz
-  #       sha256: e4b77c41cfc4c8c5a035fcdc320c7bc6cfb75ef7c5a034153df1413fa1d92f13
 
   - name: libjpeg # with libjpeg.so.8
     buildsystem: cmake-ninja
@@ -248,104 +162,7 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
     post-install:
       - "install -Dm644 COPYING ${FLATPAK_DEST}/share/licenses/libusb/COPYING"
 
-  # - name: libwebkit2gtk #Listed as a requirement
-  #   buildsystem: cmake-ninja
-  #   build-options:
-  #     ldflags: -Wl,-V
-  #     cxxflags: -std=c++17 -Wno-error=stringop-truncation -Wno-error=class-memaccess -Wno-error=sizeof-pointer-memaccess -Wno-error=unused-function -Wno-error=deprecated-declarations -Wno-error=maybe-uninitialized -Wno-error=stringop-overflow= -Wno-error=misleading-indentation -Wno-error=format-truncation= -Wno-error=aligned-new= -Wno-error=mismatched-new-delete
-  #   no-parallel-make: false
-  #   config-opts:
-  #     - -DCMAKE_BUILD_TYPE=Release
-  #     - -DCMAKE_INSTALL_PREFIX=/usr
-  #     #- -DCMAKE_SKIP_RPATH=ON
-  #     #- -DENABLE_DRAG_SUPPORT=OFF
-  #     #- -DENABLE_GEOLOCATION=OFF
-  #     ##- -DENABLE_ICONDATABASE=OFF
-  #     ##- -DENABLE_INDEXED_DATABASE=OFF
-  #     #- -DENABLE_NOTIFICATIONS=OFF
-  #     ##- -DENABLE_PLUGIN_PROCESS_GTK2=OFF
-  #     #- -DENABLE_SPELLCHECK=OFF
-  #     #- -DENABLE_VIDEO=OFF
-  #     - -DENABLE_WEBDRIVER=OFF
-  #     #- -DENABLE_WEB_AUDIO=OFF
-  #     ##- -DENABLE_WEB_CRYPTO=OFF
-  #     #- -DLIBEXEC_INSTALL_DIR=/usr/lib${LIBDIRSUFFIX}/webkit2gtk-4.0
-  #     #- -DLIB_INSTALL_DIR=/usr/lib${LIBDIRSUFFIX}
-  #     - -DPORT=GTK
-  #     ##- -DSHARED_CORE=OFF
-  #     #- -DUSE_LIBHYPHEN=OFF
-  #     ##- -DUSE_LIBNOTIFY=OFF
-  #     #- -DUSE_LIBSECRET=OFF
-  #     #- -DUSE_SYSTEM_MALLOC=ON
-  #     #- -DUSE_WOFF2=OFF
-  #     - -DENABLE_DOCUMENTATION=OFF #disable dep gi-docgen
-  #     #- -DUSE_JPEGXL=OFF #disable dep libjxl
-  #     - -DUSE_LIBBACKTRACE=OFF #disable dep libbacktrace
-  #     - -DENABLE_BUBBLEWRAP_SANDBOX=OFF #disable dep bwrap
-  #     #- -DUSE_GSTREAMER_GL=OFF #disable dep gstreamer
-  #     - -DENABLE_GAMEPAD=OFF #disable gamepad gstreamer
-  #     - -DENABLE_MINIBROWSER=OFF
-  #     # testing
-  #     #- -DUSE_SOUP2=ON
-  #     - -DENABLE_SPEECH_SYNTHESIS=OFF #disable dep Flite
-  #     - -DENABLE_UNIFIED_BUILDS=OFF
-  #   sources:
-  #     - type: archive
-  #       url: http://archive.ubuntu.com/ubuntu/pool/main/w/webkit2gtk/webkit2gtk_2.50.3.orig.tar.xz
-  #       sha256: 70a006b4695bb6b2e157e801f5a0d029f4110f050c6f0882decd8a3bf594d54f
-  #   cleanup:
-  #     - '*'
-  #   modules:
-  #     - name: unifdef #Listed as a requirement for webkit2gtk
-  #       no-autogen: true
-  #       make-install-args:
-  #         - prefix=${FLATPAK_DEST}
-  #       sources:
-  #         - type: archive
-  #           url: http://archive.ubuntu.com/ubuntu/pool/universe/u/unifdef/unifdef_2.12.orig.tar.gz
-  #           sha256: fba564a24db7b97ebe9329713ac970627b902e5e9e8b14e19e024eb6e278d10b
-  #       cleanup:
-  #         - '*'
-  # - name: gcc-multilib #Listed as a requirement for webkit2gtk
-  #   buildsystem: simple
-  #   build-commands:
-  #   - |
-  #     ./configure --prefix=/app ../configure "CFLAGS=-m64 -O2" "CXXFLAGS=-m64" "LDFLAGS=-m64"
-  #     make
-  #     make install
-  #   sources:
-  #     - type: archive
-  #       url: http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/glibc_2.42.orig.tar.xz
-  #       sha256: d1775e32e4628e64ef930f435b67bb63af7599acb6be2b335b9f19f16509f17f
-  # - name: libcxx
-  #   buildsystem: cmake-ninja
-  #   builddir: true
-  #   subdir: runtimes
-  #   sources: 
-  #     - type: archive
-  #       url: https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/llvm-18.1.8.src.tar.xz
-  #       sha256: f68cf90f369bc7d0158ba70d860b0cb34dbc163d6ff0ebc6cfa5e515b9b2e28d
-  #   config-opts:
-  #     - -DCMAKE_C_COMPILER=clang
-  #     - -DCMAKE_CXX_COMPILER=clang++
-  #     - -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi"
-  #     - -DLLVM_DEFAULT_TARGET_TRIPLE=x86_64-unknown-linux-gnu
-  #   build-commands:
-  #     - echo "Building libcxx"
-  #     - mkdir build
-  #     - cmake -G Ninja -S runtimes -B build -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi"
-  #     - ninja -C build cxx cxxabi
-  #     #- ninja -C build check-cxx check-cxxabi check-unwind
-  #     - ninja -C build install-cxx install-cxxabi
 
-  # - name: glibc #Listed as a requirement "for instrumentation", not sure what that refers to
-  #   buildsystem: autotools
-  #   builddir: true
-  #   sources:
-  #      - type: archive
-  #        url: http://archive.ubuntu.com/ubuntu/pool/main/g/glibc/glibc_2.42.orig.tar.xz
-  #        sha256: d1775e32e4628e64ef930f435b67bb63af7599acb6be2b335b9f19f16509f17f
-        
 
   #Copies the launch/initial setup script from this project to the app directory.
   #Downloads the installer archives for Workspace and HDX-RTME. The download links are dynamic, so they can't be hardcoded into this manifest. They have to be obtained by scraping the Citrix downloads page every time
@@ -390,59 +207,6 @@ modules: #Requirements as per Citrix's site, that aren't included in the Flatpak
       - type: file
         path: ./install.sh
 
-  #When the app is launched on Ubuntu (Gnome 38), it complains about being unable to find the atk-bridge module. However, everything seems to still work fine without it.
-  #This package seems to be related to an accessibility features interface (AT-SPI), so it's possible that there are some accessibility features that may not work without this module installed
-  # - name: atk-bridge
-  #   buildsystem: meson
-  #   sources:
-  #      - type: archive
-  #        url: http://archive.ubuntu.com/ubuntu/pool/main/a/at-spi2-atk/at-spi2-atk_2.38.0.orig.tar.xz
-  #        sha256: cfa008a5af822b36ae6287f18182c40c91dd699c55faa38605881ed175ca464f
-  #
-  
-  # - name: libcanberra-gtk3-module #libgl,libegl etc.
-  #   buildsystem: autotools
-  #   no-autogen: true
-  #   make-install-args:
-  #     - PREFIX=/app
-  #   sources:
-  #      - type: archive
-  #        url: http://archive.ubuntu.com/ubuntu/pool/main/libc/libcanberra/libcanberra_0.30.orig.tar.xz
-  #        sha256: c2b671e67e0c288a69fc33dc1b6f1b534d07882c2aceed37004bf48c601afa72 
-
-    
-
-  # - name: perl
-  #   sources:
-  #     - type: archive
-  #       url: "http://www.cpan.org/src/5.0/perl-5.32.0.tar.gz"
-  #       sha256: efeb1ce1f10824190ad1cadbcccf6fdb8a5d37007d0100d2d9ae5f2b5900c0b4
-  #     - type: script
-  #       dest-filename: configure
-  #       commands:
-  #         - ./Configure -des -Dprefix=/app
-  #   post-install:
-  #     - "find /app/lib/perl5 -type f -exec chmod u+w {} \\;"
-  #     
-  # - name: openssl
-  #   buildsystem: simple
-  #   build-commands:
-  #     - |
-  #       ./config --prefix=/app
-  #       make
-  #       make test
-  #       PREFIX=/app make install
-  #   sources:
-  #     - type: archive
-  #       url: http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/openssl_1.1.1j.orig.tar.gz
-  #       sha256: aaf2fcb575cdf6491b98ab4829abf78a3dec8402b8b81efc8f23c00d443981bf
-  #
-  #- name: binutils
-    #buildsystem: autotools
-    #sources:
-       #- type: archive
-         #url: https://ftp.wayne.edu/gnu/binutils/binutils-2.37.tar.xz
-         #sha256: 820d9724f020a3e69cb337893a0b63c2db161dadcb0e06fc11dc29eb1e84a32c
 
   - name: Run-script
     buildsystem: simple
